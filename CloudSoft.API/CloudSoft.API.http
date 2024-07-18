@@ -1,0 +1,6 @@
+@CloudSoft.API_HostAddress = http://localhost:5124
+
+GET {{CloudSoft.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

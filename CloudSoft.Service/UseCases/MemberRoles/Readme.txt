@@ -1,0 +1,1 @@
+Bu readme Fileni o'chirib boshlab keturasiz.
