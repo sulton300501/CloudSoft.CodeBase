@@ -35,6 +35,7 @@ namespace CloudSoft.API
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 

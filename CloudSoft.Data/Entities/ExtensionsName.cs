@@ -1,6 +1,6 @@
 ﻿namespace CloudSoft.Data.Entities
 {
-    public class Extension
+    public class ExtensionsName
     {
         public long Id { get; set; }
         public string Name { get; set; }

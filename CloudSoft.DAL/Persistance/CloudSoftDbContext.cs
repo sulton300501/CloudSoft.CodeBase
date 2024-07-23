@@ -21,7 +21,7 @@ namespace CloudSoft.DAL.Persistance
 
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Extension> Extensions { get; set; }
+        public DbSet<ExtensionsName> Extensions { get; set; }
         public DbSet<MemberRole> MemberRoles { get; set; }
         public DbSet<ProjectInfo> Projects { get; set; }
         public DbSet<TeamMemeber> TeamMemebers { get; set; }
@@ -48,7 +48,7 @@ namespace CloudSoft.DAL.Persistance
                     .HasColumnType("text");
             });
 
-            modelBuilder.Entity<Extension>(e =>
+            modelBuilder.Entity<ExtensionsName>(e =>
             {
 
                 e.Property(p => p.Description)
@@ -60,5 +60,11 @@ namespace CloudSoft.DAL.Persistance
         {
             return await base.SaveChangesAsync(cancellationToken);
         }
+
+
+
+
+
+
     }
 }

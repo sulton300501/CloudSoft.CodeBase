@@ -19,4 +19,8 @@
     <ProjectReference Include="..\CloudSoft.Service\CloudSoft.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

@@ -12,6 +12,6 @@ namespace CloudSoft.Data.Entities
         public string Title { get; set; }
         public string Picture { get; set; }
         public string Description { get; set; }
-        public List<Extension> Extensions { get; set; }
+        public List<ExtensionsName> Extensions { get; set; }
     }
 }
