@@ -28,6 +28,7 @@ namespace CloudSoft.Service.UseCases.TeamMembers.Commands.DeleteTeam
             }
 
             var natija = _context.TeamMemebers.Remove(result);
+            await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
     }

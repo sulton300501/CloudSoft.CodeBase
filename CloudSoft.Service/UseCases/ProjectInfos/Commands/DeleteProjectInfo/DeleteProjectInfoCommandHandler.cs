@@ -28,6 +28,7 @@ namespace CloudSoft.Service.UseCases.ProjectInfos.Commands.DeleteProjectInfo
             }
 
              var natija = _context.Projects.Remove(result);
+            await _context.SaveChangesAsync(cancellationToken);
             return true;
             
             
