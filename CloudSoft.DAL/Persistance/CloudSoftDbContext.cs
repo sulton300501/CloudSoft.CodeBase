@@ -1,4 +1,5 @@
 ﻿using CloudSoft.Data.Entities;
+using CloudSoft.Data.Entities.Auth;
 using CloudSoft.Service.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CloudSoft.DAL.Persistance
 {
-    public class CloudSoftDbContext : IdentityDbContext<Admin, IdentityRole<long>, long>, IApplicationDbContext
+    public class CloudSoftDbContext : IdentityDbContext<IdentityUser>, IApplicationDbContext
     {
         public CloudSoftDbContext(DbContextOptions<CloudSoftDbContext> options)
             : base(options)
@@ -19,12 +20,32 @@ namespace CloudSoft.DAL.Persistance
             Database.Migrate();
         }
 
+
+      
+
+        private static void SeedRoles(ModelBuilder builder)
+        {
+            builder.Entity<IdentityRole>().HasData(
+                new IdentityRole() { Name = "ADMIN", ConcurrencyStamp = "1", NormalizedName = "ADMIN"  },
+                new IdentityRole() { Name = "USER", ConcurrencyStamp = "2", NormalizedName = "USER" }
+              
+            );
+        }
+
+
+
+
+
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<ExtensionsName> Extensions { get; set; }
         public DbSet<MemberRole> MemberRoles { get; set; }
         public DbSet<ProjectInfo> Projects { get; set; }
         public DbSet<TeamMemeber> TeamMemebers { get; set; }
+
+        public DbSet<UserApp> UserApps { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,6 +75,11 @@ namespace CloudSoft.DAL.Persistance
                 e.Property(p => p.Description)
                     .HasColumnType("text");
             });
+
+            base.OnModelCreating(modelBuilder);
+            SeedRoles(modelBuilder);
+
+
         }
 
         async ValueTask<int> IApplicationDbContext.SaveChangesAsync(CancellationToken cancellationToken)
@@ -61,6 +87,10 @@ namespace CloudSoft.DAL.Persistance
             return await base.SaveChangesAsync(cancellationToken);
         }
 
+
+
+
+    
 
 
 

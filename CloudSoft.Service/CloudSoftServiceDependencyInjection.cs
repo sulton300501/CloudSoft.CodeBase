@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CloudSoft.Service.Abstractions.AuthServices;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace CloudSoft.Service
         public static IServiceCollection AddCloudSoftServiceDependencyInjection(this IServiceCollection services)
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

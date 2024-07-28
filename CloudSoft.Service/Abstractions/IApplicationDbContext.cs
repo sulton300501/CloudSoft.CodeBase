@@ -1,4 +1,5 @@
 ﻿using CloudSoft.Data.Entities;
+using CloudSoft.Data.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace CloudSoft.Service.Abstractions
@@ -11,6 +12,7 @@ namespace CloudSoft.Service.Abstractions
         public DbSet<MemberRole> MemberRoles { get; set; }
         public DbSet<ProjectInfo> Projects { get; set; }
         public DbSet<TeamMemeber> TeamMemebers { get; set; }
+        public DbSet<UserApp> UserApps { get; set; }
 
         ValueTask<int> SaveChangesAsync(CancellationToken cancellationToken = default!);
 

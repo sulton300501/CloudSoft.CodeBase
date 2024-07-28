@@ -1,9 +1,9 @@
-
-using CloudSoft.DAL;
 using CloudSoft.DAL.Persistance;
-using CloudSoft.Data.Entities;
+using CloudSoft.DAL;
+using CloudSoft.Data.Entities.Auth;
 using CloudSoft.Service;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CloudSoft.API
 {
@@ -17,7 +17,7 @@ namespace CloudSoft.API
             builder.Services.AddCloudSoftServiceDependencyInjection();
             builder.Services.AddCloudSoftDALDependencyInjection(builder.Configuration);
 
-            builder.Services.AddIdentity<Admin, IdentityRole<long>>()
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<CloudSoftDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -37,11 +37,13 @@ namespace CloudSoft.API
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 
+         
+          
             app.Run();
         }
     }
